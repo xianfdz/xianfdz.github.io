@@ -3,7 +3,7 @@ title: tuboshu Blog
 SEOTitle: tuboshu的博客 | BY Blog
 header-img: img/post-bg-desk.jpg
 email: 726573436@qq.com
-description: "Every failure is leading towards success."
+description: "Hello to my world."
 keyword: "CTF.PWN,C/C++,OS"
 url: "http://xianfdz.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
@@ -11,7 +11,7 @@ github_repo: "https://github.com/xianfdz/xianfdz.github.io.git" # you code repos
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Goals determine what you going to be!"
+sidebar-about-description: "Go your own way and let others say go!"
 sidebar-avatar: /img/头像.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
@@ -19,7 +19,7 @@ sidebar-avatar: /img/头像.jpg      # use absolute URL, seeing it's used in bot
 # SNS settings
 RSS: false
 # weibo_username:     xianfdz
-zhihu_username:     xianfdz
+zhihu_username:     tuboshu
 github_username:    xianfdz
 facebook_username:  xianfdz
 jianshu_username:   xianfdz
