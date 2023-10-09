@@ -4,7 +4,7 @@
 ## rctf_2019_babyheap
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6a20e21660eb442fb4871b211f9bbe59.png)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/d5ddcfdaa4074a059283f919bb74e430.png)
+![在这里插入图片描述]("https://img-blog.csdnimg.cn/d5ddcfdaa4074a059283f919bb74e430.png")
 保护全开，禁用了execve就是禁用了system，因为system函数通过调用execve函数才能执行。
 看一下ida
 ### main函数
